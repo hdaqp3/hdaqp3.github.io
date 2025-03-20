@@ -1,6 +1,6 @@
 /* Estilo general */
 body {
-    font-family: "SF Pro", Arial, sans-serif; /* Fuente principal */
+    font-family: "SF Pro", Arial, sans-serif;
     margin: 20px;
     padding: 0;
     background-color: #f9f9f9;
@@ -12,95 +12,107 @@ body {
 h1 {
     color: #03509a;
     margin-bottom: 20px;
-    font-size: 2rem; /* Tamaño del encabezado ajustado para pantallas pequeñas */
+    font-size: 2rem;
 }
 
 /* Contenedor de tareas */
 .task-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alinea las tareas a la izquierda */
-    gap: 8px; /* Espaciado entre tareas */
+    align-items: stretch; /* Asegura que todas las tareas tengan el mismo ancho */
+    gap: 10px; /* Espaciado uniforme entre tareas */
     margin: 0 auto;
     padding: 15px;
-    max-width: 600px; /* Ajusta el ancho máximo */
+    max-width: 600px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Cada tarea */
 .task {
     display: flex;
-    justify-content: space-between; /* Mueve el interruptor al lado derecho */
-    align-items: center; /* Centra los elementos verticalmente */
-    width: 100%;
-    padding: 8px 12px; /* Espaciado interno reducido */
+    justify-content: space-between; /* Distribuye los elementos uniformemente */
+    align-items: center; /* Centra verticalmente los elementos */
+    width: 100%; /* Asegura que las tareas ocupen todo el ancho del contenedor */
+    padding: 10px 15px;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinea el texto al lado izquierdo */
 }
 
 /* Texto de las tareas */
 .task p {
     font-size: 14px;
-    margin: 0; /* Elimina márgenes del texto */
+    margin: 0;
     color: #333;
-    font-weight: normal; /* Estilo básico para el texto normal */
+    flex: 2; /* Asigna más espacio al texto de la tarea */
+    text-align: left; /* Asegura la alineación a la izquierda */
 }
 
-/* Texto en negrita y cursiva */
-.task p strong em {
-    font-weight: bold; /* Negrita */
-    font-style: italic; /* Cursiva */
+/* Texto dinámico de estado */
+.task .status {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 20px; /* Espaciado entre el switch y el texto */
+    flex: 1; /* Asigna un espacio proporcional al texto */
+    text-align: center; /* Centra el texto dinámico ("Sí" o "No") */
+    text-transform: uppercase; /* Muestra el texto en mayúsculas */
 }
 
 /* Estilo del switch */
 label.switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 25px;
-    border-radius: 60px;
-    background-color: #ccc;
-    cursor: pointer;
+    width: 50px; /* Ancho fijo del switch */
+    height: 25px; /* Alto fijo del switch */
+    border-radius: 60px; /* Forma redondeada */
+    background-color: #ccc; /* Color de fondo inicial (apagado) */
+    cursor: pointer; /* Muestra que es interactivo */
     transition: background-color 0.3s ease; /* Transición suave para cambios de color */
+    flex-shrink: 0; /* Evita que el tamaño del switch cambie con el layout */
 }
 
+/* Oculta el checkbox real */
 label.switch > input[type="checkbox"] {
-    opacity: 0; /* Oculta el checkbox real */
+    opacity: 0;
     position: absolute;
 }
 
+/* Fondo del switch */
 label.switch > span {
     position: absolute;
     display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 60px;
-    transition: background-color 0.3s ease; /* Transición suave para cambios de fondo */
+    width: 100%; /* Coincide con el ancho del switch */
+    height: 100%; /* Coincide con el alto del switch */
+    border-radius: 60px; /* Forma redondeada */
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
+/* Control deslizante del switch */
 label.switch > span:after {
-    content: ""; /* Crea el control deslizante */
+    content: "";
     position: absolute;
-    top: 50%;
+    top: 50%; /* Centra verticalmente */
     left: 4px; /* Ajusta la posición inicial */
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease; /* Transición suave para el deslizamiento */
+    transform: translateY(-50%); /* Centra el círculo */
+    width: 18px; /* Tamaño del círculo */
+    height: 18px; /* Tamaño del círculo */
+    background-color: #fff; /* Color del círculo */
+    border-radius: 50%; /* Forma circular */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra ligera */
+    transition: transform 0.3s ease; /* Transición para el movimiento */
 }
 
+/* Estado activado (encendido) */
 label.switch > input[type="checkbox"]:checked ~ span {
-    background-color: #4ed164; /* Fondo verde cuando está activado */
+    background-color: #4ed164; /* Cambia el fondo a verde */
 }
 
 label.switch > input[type="checkbox"]:checked ~ span:after {
-    transform: translateY(-50%) translateX(24px); /* Desliza el control hacia la derecha */
+    transform: translateY(-50%) translateX(24px); /* Mueve el círculo hacia la derecha */
 }
 
 /* Media Queries para responsive design */
@@ -108,33 +120,39 @@ label.switch > input[type="checkbox"]:checked ~ span:after {
 /* Pantallas pequeñas (teléfonos) */
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.6rem; /* Tamaño reducido */
+        font-size: 1.6rem; /* Reduce el tamaño del encabezado */
     }
 
     .task-container {
         padding: 10px;
-        max-width: 100%; /* Ajusta el ancho al dispositivo */
+        max-width: 100%; /* Asegura que el ancho se ajuste al dispositivo */
     }
 
     .task p {
-        font-size: 12px; /* Tamaño reducido para texto */
+        font-size: 12px; /* Reduce el tamaño del texto */
+        text-align: left; /* Mantiene el texto alineado a la izquierda */
     }
 
     label.switch {
-        width: 40px; /* Reduce el tamaño del interruptor */
+        width: 40px; /* Reduce el tamaño del switch */
         height: 20px;
     }
 
     label.switch > span:after {
-        width: 16px;
-        height: 16px; /* Tamaño del deslizante reducido */
+        width: 16px; /* Reduce el tamaño del círculo deslizante */
+        height: 16px;
+    }
+
+    .task .status {
+        font-size: 12px; /* Reduce el texto "Sí" y "No" */
+        margin-left: 10px; /* Reduce el espacio entre el switch y el texto */
     }
 }
 
 /* Pantallas medianas (tablets) */
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.8rem; /* Ajuste del encabezado */
+        font-size: 1.8rem; /* Ajusta el tamaño del encabezado */
     }
 
     .task-container {
@@ -142,6 +160,7 @@ label.switch > input[type="checkbox"]:checked ~ span:after {
     }
 
     .task p {
-        font-size: 13px; /* Ajuste del texto */
+        font-size: 13px; /* Ajusta el tamaño del texto */
+        text-align: left; /* Mantiene el texto alineado a la izquierda */
     }
 }

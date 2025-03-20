@@ -3,27 +3,13 @@ document.querySelectorAll(".task-container .switch input[type='checkbox']").forE
     checkbox.addEventListener("change", (event) => {
         // Identifica la tarea asociada
         const taskElement = event.target.closest(".task");
-        const switchSpan = taskElement.querySelector("label.switch > span");
+        const statusText = taskElement.querySelector(".status"); // Selecciona el texto de estado
 
-        // Cambia dinámicamente el color del interruptor según el estado
+        // Cambia dinámicamente el estado ("Sí" o "No")
         if (event.target.checked) {
-            switchSpan.style.backgroundColor = "#4ed164"; // Estado activado
-            console.log(`Tarea completada: ${taskElement.querySelector("p").textContent}`);
+            statusText.textContent = "Si"; // Estado activado
         } else {
-            switchSpan.style.backgroundColor = "#ccc"; // Estado desactivado
-            console.log(`Tarea pendiente: ${taskElement.querySelector("p").textContent}`);
+            statusText.textContent = "No"; // Estado desactivado
         }
     });
-});
-
-// Responsive fix: Ajuste adicional para pantallas más pequeñas
-window.addEventListener("resize", () => {
-    const container = document.querySelector(".task-container");
-
-    // Ajuste de padding según el tamaño de la pantalla
-    if (window.innerWidth < 480) {
-        container.style.padding = "8px";
-    } else {
-        container.style.padding = "15px";
-    }
 });
