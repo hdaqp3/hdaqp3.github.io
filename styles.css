@@ -39,7 +39,7 @@ h1 {
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Alinea el texto al lado izquierdo */
+    text-align: left; /* Alinea el texto de las tareas a la izquierda */
 }
 
 /* Texto de las tareas */
@@ -162,5 +162,78 @@ label.switch > input[type="checkbox"]:checked ~ span:after {
     .task p {
         font-size: 13px; /* Ajusta el tamaño del texto */
         text-align: left; /* Mantiene el texto alineado a la izquierda */
+    }
+}
+
+/* Media query para impresión */
+@media print {
+    /* Ajusta el contenedor de tareas */
+    .task-container {
+        max-width: 100%; /* Utiliza todo el ancho disponible en la impresión */
+        padding: 10px;
+        border: none; /* Opcional: elimina bordes si no son necesarios */
+        box-shadow: none; /* Elimina sombras */
+    }
+
+    /* Cada tarea */
+    .task {
+        box-shadow: none; /* Elimina sombras */
+        padding: 8px; /* Reduce el espaciado */
+        border: 1px solid #ddd; /* Agrega bordes visibles en impresión */
+    }
+
+    /* Switch en impresión */
+    label.switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 25px;
+        background-color: #ccc; /* Fondo gris claro */
+        border-radius: 60px;
+        border: 1px solid #aaa; /* Agrega un borde visible para impresión */
+    }
+
+    label.switch > span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #ccc; /* Fondo gris */
+        border-radius: 60px;
+        border: 1px solid #aaa; /* Agrega borde */
+    }
+
+    label.switch > span:after {
+        content: ""; /* Crea el control deslizante */
+        width: 18px;
+        height: 18px;
+        background-color: #fff; /* Fondo blanco */
+        border: 1px solid #aaa; /* Agrega borde al control */
+        position: absolute;
+        top: 50%;
+        left: 4px; /* Posición inicial */
+        transform: translateY(-50%);
+        border-radius: 50%; /* Forma circular */
+    }
+
+    label.switch > input[type="checkbox"]:checked ~ span {
+        background-color: #4ed164; /* Fondo verde para estado activado */
+    }
+
+    label.switch > input[type="checkbox"]:checked ~ span:after {
+        transform: translateY(-50%) translateX(24px); /* Mueve el círculo a la derecha */
+    }
+
+    /* Texto de estado "Sí" o "No" */
+    .task .status {
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #000; /* Asegura un color visible */
+    }
+
+    /* Opcional: oculta elementos innecesarios para impresión */
+    body {
+        color: #000; /* Forzar texto negro para impresión */
+        background-color: #fff; /* Fondo blanco para impresión */
     }
 }
